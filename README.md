@@ -1,0 +1,120 @@
+# Rune
+
+**A four-sigil reactive binding protocol for documents.**
+
+Rune is a minimal, embeddable protocol that gives any document format four operations: read state, sync state, trigger actions, and declare intent. Nothing more.
+
+```
+@  read      — display a value from state
+~  sync      — two-way binding between input and state
+!  act       — trigger a named action
+?  intent    — annotate meaning for humans and AI
+```
+
+---
+
+## The Protocol in 30 Seconds
+
+Every interactive document needs the same four things. Rune names them once:
+
+```html
+<!-- A task input that syncs, triggers, displays, and annotates -->
+<field ~new-task placeholder="New task…"/>          <!-- sync: user types → state updates -->
+<button !add-task>Add</button>                      <!-- act: explicit trigger -->
+<list @tasks>                                        <!-- read: display state -->
+  <item @item.title/>
+</list>
+<screen ?"mobile task list, minimal, focus on speed"> <!-- intent: AI metadata -->
+```
+
+No framework. No runtime dependency. Four characters, complete grammar.
+
+---
+
+## Why Rune Exists
+
+Every domain that has reactive data reinvents the same four operations from scratch — incompatibly:
+
+| System | Read | Sync | Act | Intent |
+|--------|------|------|-----|--------|
+| React | `{val}` | `onChange` | `onClick` | — |
+| Angular | `[prop]` | `[(ngModel)]` | `(event)` | — |
+| Vue | `:prop` | `v-model` | `@click` | — |
+| Config files | `${ENV}` | — | — | `# comment` |
+| SQL | `@param` | — | — | `-- comment` |
+| **Rune** | `@` | `~` | `!` | `?` |
+
+None are interoperable. None are complete. None have the fourth operation.
+
+`?` is what makes Rune new. It is not a comment — it is **structured intent** that travels with the binding, is addressable by tooling, and is machine-readable by AI. No existing binding protocol has this.
+
+---
+
+## The Four Runes
+
+| Rune | Name | Direction | Meaning |
+|------|------|-----------|---------|
+| `@` | Read | State → Display | Observe a value. No side effects. |
+| `~` | Sync | State ↔ Input | Bidirectional coupling. Input and state stay in sync. |
+| `!` | Act | User → Behavior | Explicit invocation. Nothing happens without intent. |
+| `?` | Intent | Document → Human/AI | Structured annotation. Ignored at runtime. Read by tools. |
+
+These four are **complete**. You cannot add a fifth without it being redundant. That bounded completeness is what makes Rune embeddable — it is a protocol, not a framework.
+
+---
+
+## Rune is a Protocol, Not a Runtime
+
+A framework says "use our runtime."  
+A protocol says "adopt this grammar, implement your own runtime."
+
+Rune defines the **semantics** of the four runes. Host formats define the **element vocabulary**. Each host provides its own runtime — or embeds the Rune reference runtime.
+
+**Mere** (the workbook format for apps) is Rune's origin and reference implementation.  
+Any format can be a Rune host.
+
+---
+
+## Host Formats
+
+Rune has been designed to embed naturally in:
+
+- **UI documents** — application screens, dashboards, forms
+- **Configuration files** — infrastructure, environment, deployment
+- **Publishing formats** — documents, reports, templates
+- **Domain languages** — trading signals, clinical records, legal contracts
+- **API specifications** — interactive docs with live bindings
+
+See [HOSTS.md](HOSTS.md) for the host implementation guide.
+
+---
+
+## Specification
+
+- [SPEC.md](SPEC.md) — Formal definition of the four runes
+- [PHILOSOPHY.md](PHILOSOPHY.md) — Why four, why these four, the completeness argument
+- [INDUSTRY.md](INDUSTRY.md) — How Rune reflects across domains
+- [ADOPTION.md](ADOPTION.md) — What spreading looks like
+
+## Examples
+
+- [examples/mere.md](examples/mere.md) — Rune in Mere workbooks (origin)
+- [examples/config.md](examples/config.md) — Rune in configuration files
+- [examples/recall.md](examples/recall.md) — Rune in publishing documents
+- [examples/clinical.md](examples/clinical.md) — Rune in healthcare documentation
+- [examples/legal.md](examples/legal.md) — Rune in contract systems
+- [examples/trading.md](examples/trading.md) — Rune in financial/trading systems
+
+---
+
+## Origin
+
+Rune grew out of the sigil syntax in [Mere](https://mere.mp) — a workbook format for apps where the file is the app.
+
+The four sigils were designed for Mere's bounded, AI-native authoring surface. They turned out to be a complete reactive grammar. This document formalises them as a standalone protocol.
+
+**Mere invented it. Rune names it.**
+
+---
+
+*Part of the [Cormorant Foraging](https://cormorantforaging.dev) ecosystem.*
