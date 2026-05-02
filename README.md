@@ -105,6 +105,29 @@ See [HOSTS.md](HOSTS.md) for the host implementation guide.
 - [examples/legal.md](examples/legal.md) — Rune in contract systems
 - [examples/trading.md](examples/trading.md) — Rune in financial/trading systems
 
+## Implementations
+
+Reference implementations showing the protocol mapped to host language idioms.
+
+### C#
+- [implementations/csharp/RuneCore.cs](implementations/csharp/RuneCore.cs) — Domain model: `RuneType`, `RuneBinding`, `RuneParser`, all four stores
+- [implementations/csharp/RuneHost.cs](implementations/csharp/RuneHost.cs) — Host wiring: `RuneHost`, attributes, reflection-based `RuneHostBuilder`
+- [implementations/csharp/Example.cs](implementations/csharp/Example.cs) — Three patterns: attribute-based, fluent, template engine simulation
+
+### SQL (PostgreSQL)
+- [implementations/sql/rune_core.sql](implementations/sql/rune_core.sql) — Registry tables, helpers, `rune_intent_all` view
+- [implementations/sql/example_task_workbook.sql](implementations/sql/example_task_workbook.sql) — Task list: views as `@`, columns as `~`, functions as `!`
+- [implementations/sql/example_risk_dashboard.sql](implementations/sql/example_risk_dashboard.sql) — Risk dashboard: audit-logged `!`, compliance `?`, read-only `@` feeds
+
+**The mapping is direct:**
+
+| Rune | C# | SQL |
+|------|-----|-----|
+| `@` | `[RuneComputed]` property / `host.Read()` | `VIEW` or generated column |
+| `~` | `[RuneState]` property / `host.Sync()` | Mutable `TABLE` column |
+| `!` | `[RuneAction]` method / `host.Act()` | `FUNCTION` or `STORED PROCEDURE` |
+| `?` | `[RuneIntent]` attribute / `host.RecordIntent()` | `COMMENT ON` + `rune_intent` table |
+
 ---
 
 ## Origin
