@@ -1,0 +1,16 @@
+{
+  "name": "rune-protocol-docs",
+  "version": "1.0.0",
+  "description": "Documentation for Rune Protocol — a four-sigil reactive binding protocol",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "deploy": "wrangler pages deploy .vitepress/dist --project-name=rune-protocol-docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "wrangler": "^4.43.0"
+  }
+}
