@@ -34,7 +34,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Spec', link: '/SPEC' },
       { text: 'Examples', link: '/examples/mere' },
-      { text: 'Implementations', link: '/implementations/csharp/RuneCore' },
+      { text: 'Implementations', link: '/implementations/csharp' },
       { text: 'GitHub', link: 'https://github.com/semanticintent/rune-protocol' },
       { text: '🐦 Cormorant Foraging', link: 'https://cormorantforaging.dev' },
     ],
@@ -78,21 +78,21 @@ export default defineConfig({
       {
         text: 'Implementations',
         items: [
-          { text: 'C# — Core', link: '/implementations/csharp/RuneCore' },
-          { text: 'C# — Host & Builder', link: '/implementations/csharp/RuneHost' },
-          { text: 'C# — Examples', link: '/implementations/csharp/Example' },
-          { text: 'React / TypeScript — Host', link: '/implementations/react/rune-host' },
-          { text: 'React / TypeScript — Hooks', link: '/implementations/react/rune-react' },
-          { text: 'React / TypeScript — Examples', link: '/implementations/react/example' },
-          { text: 'SQL — Core', link: '/implementations/sql/rune_core' },
-          { text: 'SQL — Task Workbook', link: '/implementations/sql/example_task_workbook' },
-          { text: 'SQL — Risk Dashboard', link: '/implementations/sql/example_risk_dashboard' },
+          { text: 'C#', link: '/implementations/csharp' },
+          { text: 'React / TypeScript', link: '/implementations/react' },
+          { text: 'SQL (PostgreSQL)', link: '/implementations/sql' },
+        ]
+      },
+      {
+        text: 'Legal',
+        items: [
+          { text: 'Terms & Conditions', link: '/terms' },
         ]
       },
     ],
 
     footer: {
-      message: 'Rune Protocol — MIT License',
+      message: 'Released under the <a href="/terms">MIT License</a> · <a href="/terms">Terms & Conditions</a>',
       copyright: 'Part of the <a href="https://cormorantforaging.dev">Cormorant Foraging</a> ecosystem · <a href="https://semanticintent.dev">Semantic Intent</a>'
     },
 
