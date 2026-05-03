@@ -53,6 +53,7 @@ export default defineConfig({
       {
         text: 'Governance',
         items: [
+          { text: 'Universal Contract', link: '/UNIVERSAL' },
           { text: 'AI & Declaration', link: '/AI' },
           { text: 'Cross-Layer Contracts', link: '/CONTRACTS' },
           { text: 'Industry Applications', link: '/INDUSTRY' },
