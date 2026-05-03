@@ -95,6 +95,7 @@ See [HOSTS.md](HOSTS.md) for the host implementation guide.
 - [PHILOSOPHY.md](PHILOSOPHY.md) — Why four, why these four, the completeness argument
 - [INDUSTRY.md](INDUSTRY.md) — How Rune reflects across domains
 - [ADOPTION.md](ADOPTION.md) — What spreading looks like
+- [AI.md](AI.md) — AI inference vs declaration: what AI reads in a Rune-annotated system
 
 ## Examples
 
