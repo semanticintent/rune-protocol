@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.2 — 2026-05-03
+
+DOI minted: `10.5281/zenodo.20007883`  
+Docs site live at [rune.semanticintent.dev](https://rune.semanticintent.dev)
+
+---
+
 ## v1.0.0 — 2026-05-02
 
 Initial release of Rune Protocol.

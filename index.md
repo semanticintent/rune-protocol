@@ -102,3 +102,7 @@ CREATE FUNCTION act_submit_order(p_order_id UUID) RETURNS TEXT ...
 Rune is the syntax layer beneath the semantic layer. Every project in the ecosystem has its own domain vocabulary — [EMBER](https://github.com/semanticintent/ember), [Mere](https://docs.mere.fyi), [Recall](https://semanticintent.dev), [Phoenix](https://github.com/semanticintent/phoenix-runtime), [Strata](https://github.com/semanticintent/strata-runtime), [Wake](https://wake.semanticintent.dev). Each answers *what does this mean*. Rune answers *how does this value behave*. Those are different questions at different levels — and Rune answers the second one, once, for all of them.
 
 **Mere invented it. Rune names it.**
+
+---
+
+*DOI: [10.5281/zenodo.20007883](https://doi.org/10.5281/zenodo.20007883) · [rune.semanticintent.dev](https://rune.semanticintent.dev) · [GitHub](https://github.com/semanticintent/rune-protocol)*

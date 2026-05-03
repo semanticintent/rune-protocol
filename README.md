@@ -1,4 +1,6 @@
-# Rune
+# Rune Protocol
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20007883.svg)](https://doi.org/10.5281/zenodo.20007883)
 
 **A four-sigil reactive binding protocol for documents.**
 
