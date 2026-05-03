@@ -33,6 +33,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Spec', link: '/SPEC' },
+      { text: 'Origins', link: '/ORIGINS' },
       { text: 'Examples', link: '/examples/mere' },
       { text: 'Implementations', link: '/implementations/csharp' },
       { text: 'GitHub', link: 'https://github.com/semanticintent/rune-protocol' },
@@ -46,6 +47,7 @@ export default defineConfig({
           { text: 'Introduction', link: '/' },
           { text: 'Specification', link: '/SPEC' },
           { text: 'Philosophy', link: '/PHILOSOPHY' },
+          { text: 'Origins', link: '/ORIGINS' },
         ]
       },
       {
