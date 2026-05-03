@@ -97,6 +97,7 @@ See [HOSTS.md](HOSTS.md) for the host implementation guide.
 - [ADOPTION.md](ADOPTION.md) — What spreading looks like
 - [AI.md](AI.md) — AI inference vs declaration: what AI reads in a Rune-annotated system
 - [CONTRACTS.md](CONTRACTS.md) — Cross-layer contract enforcement: the Rune schema as ground truth
+- [ROADMAP.md](ROADMAP.md) — What's next: schema, tooling, packages, site, ecosystem
 
 ## Examples
 

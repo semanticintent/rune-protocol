@@ -31,3 +31,5 @@ Initial release of Rune Protocol.
 - `ADOPTION.md` — zero-cost `?` entry point, four adoption levels
 - `HOSTS.md` — host implementation guide
 - `AI.md` — inference vs declaration: what AI reads in a Rune-annotated system
+- `CONTRACTS.md` — cross-layer contract enforcement, the Rune schema
+- `ROADMAP.md` — v1.1 through v2.x milestones
