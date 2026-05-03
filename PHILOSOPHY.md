@@ -1,5 +1,21 @@
 # Rune Philosophy
 
+## Contracts in the Form of Signals
+
+Most binding systems are notational. They give you a way to write down what a value does. Rune is different — it gives you a way to *signal* it.
+
+The distinction matters. A notation tells you something. A signal **changes how every reader behaves** toward the thing it touches.
+
+When an AI assistant encounters `~risk-threshold`, it does not infer "probably editable from context." It reads a declared signal: mutable, governed, bidirectional — something with a mutation surface that deserves respect. It won't suggest caching the value. It won't inline it as a constant. It knows, structurally, that something is responsible for managing its changes.
+
+When it encounters `!submit-order`, it reads: explicit boundary — nothing consequential here happens without deliberate human invocation. It won't auto-complete a call to it inside a loop. It won't batch it silently. The signal shapes behavior in the collaboration, not just comprehension of the code.
+
+This is what makes Rune powerful in AI-assisted development. The runes are not annotations layered on top of a system. They are signals that travel *with* the binding — through refactors, across language boundaries, from the declaration site to every reader, human or machine. The signal is the contract. The contract is the signal.
+
+Four signals. Every reactive system, at every scale, needs exactly these four. Nothing more is possible.
+
+---
+
 ## Why Four
 
 The obvious question: why four runes? Why not three, or six, or twelve?
