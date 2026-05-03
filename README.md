@@ -96,6 +96,7 @@ See [HOSTS.md](HOSTS.md) for the host implementation guide.
 - [INDUSTRY.md](INDUSTRY.md) — How Rune reflects across domains
 - [ADOPTION.md](ADOPTION.md) — What spreading looks like
 - [AI.md](AI.md) — AI inference vs declaration: what AI reads in a Rune-annotated system
+- [CONTRACTS.md](CONTRACTS.md) — Cross-layer contract enforcement: the Rune schema as ground truth
 
 ## Examples
 
