@@ -1,0 +1,51 @@
+{
+  "title": "Rune Protocol: A Four-Sigil Reactive Binding Protocol",
+  "description": "Rune Protocol is a minimal, embeddable protocol that gives any document format, framework, or domain four reactive binding operations: @ (read), ~ (sync), ! (act), and ? (intent). The four runes are bounded complete — no fifth operation is possible without redundancy. The ? primitive is novel: structured intent that travels with the binding, is co-located with the code it describes, versioned in source control, and queryable at runtime. No existing binding protocol has this. Rune operates as a governance layer — each rune is a governance primitive that makes mutation surfaces explicit, action boundaries structural, and rationale permanent. Reference implementations are provided in C#, TypeScript/React, and SQL (PostgreSQL). Rune was extracted from the Mere workbook format, where the four sigils were working before the protocol had a name.",
+  "creators": [
+    {
+      "name": "Shatny, Michael",
+      "affiliation": "Semantic Intent",
+      "orcid": "0009-0006-2011-3258"
+    }
+  ],
+  "keywords": [
+    "protocol",
+    "reactive bindings",
+    "governance",
+    "intent annotations",
+    "AI-native",
+    "C#",
+    "TypeScript",
+    "React",
+    "SQL",
+    "domain-specific language",
+    "software architecture"
+  ],
+  "license": "MIT",
+  "version": "1.0.0",
+  "upload_type": "software",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/semanticintent/rune-protocol",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    },
+    {
+      "identifier": "https://rune.semanticintent.dev",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.19751387",
+      "relation": "isRelatedTo",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "10.5281/zenodo.19768151",
+      "relation": "isRelatedTo",
+      "scheme": "doi"
+    }
+  ]
+}
