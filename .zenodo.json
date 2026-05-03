@@ -14,38 +14,13 @@
     "governance",
     "intent annotations",
     "AI-native",
-    "C#",
-    "TypeScript",
-    "React",
-    "SQL",
-    "domain-specific language",
+    "csharp",
+    "typescript",
+    "react",
+    "sql",
     "software architecture"
   ],
   "license": "MIT",
-  "version": "1.0.0",
-  "upload_type": "software",
-  "access_right": "open",
-  "language": "eng",
-  "related_identifiers": [
-    {
-      "identifier": "https://github.com/semanticintent/rune-protocol",
-      "relation": "isSupplementTo",
-      "scheme": "url"
-    },
-    {
-      "identifier": "https://rune.semanticintent.dev",
-      "relation": "isDocumentedBy",
-      "scheme": "url"
-    },
-    {
-      "identifier": "10.5281/zenodo.19751387",
-      "relation": "isRelatedTo",
-      "scheme": "doi"
-    },
-    {
-      "identifier": "10.5281/zenodo.19768151",
-      "relation": "isRelatedTo",
-      "scheme": "doi"
-    }
-  ]
+  "version": "1.0.2",
+  "upload_type": "software"
 }
