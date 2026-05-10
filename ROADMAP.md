@@ -12,7 +12,7 @@ The protocol is defined and demonstrable.
 
 ---
 
-## v1.1 — Schema
+## v1.1 — Schema ✓ (May 2026)
 
 **The Rune schema artifact.**
 
@@ -20,11 +20,11 @@ The canonical binding manifest — `rune.schema.json` — that every host
 validates against. Elevates contracts from aspirational to enforceable.
 Without the schema, Rune is a convention. With it, Rune is a contract.
 
-- `rune.schema.json` format specification
-- Canonical kebab-case naming with per-host translation rules
-- Type declarations per binding
-- Schema validation in all three reference implementations
-- Error codes extended: schema violations at build time, not runtime
+- `rune.schema.json` — JSON Schema (draft-07), hosted at `rune.semanticintent.dev/rune.schema.json`
+- Named binding declarations with canonical kebab-case keys — hosts translate to their own conventions
+- Per-binding: type, constraints (min/max/enum/maxLength), intent annotation, arg declarations for `!`
+- `examples/task-workbook.rune.json` — reference manifest showing all four runes in a Mere workbook
+- Schema validation in all three reference implementations: error codes RNE002/RNE003/RNE005 enforced at build time
 
 ---
 

@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://rune.semanticintent.dev/rune.schema.json",
+  "title": "Rune Protocol Binding Manifest",
+  "description": "Canonical binding manifest for Rune Protocol v1.1. Declares all reactive bindings in a host for cross-layer validation. Without this schema, Rune is a convention. With it, Rune is a contract.",
+  "type": "object",
+  "required": ["$rune", "bindings"],
+  "additionalProperties": false,
+  "properties": {
+    "$rune": {
+      "type": "string",
+      "const": "1.1",
+      "description": "Rune Protocol version this manifest conforms to"
+    },
+    "host": {
+      "type": "object",
+      "description": "Host metadata — the format that owns these bindings",
+      "additionalProperties": false,
+      "properties": {
+        "format": {
+          "type": "string",
+          "description": "Host format identifier (e.g. 'mere', 'recall', 'react', 'csharp', 'sql')"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the host document or application"
+        },
+        "source": {
+          "type": "string",
+          "description": "Path or identifier of the source document"
+        }
+      }
+    },
+    "bindings": {
+      "type": "object",
+      "description": "Named binding declarations. Keys are canonical kebab-case identifiers. Hosts translate to their own conventions — SQL: snake_case, C#: PascalCase, React: camelCase. The schema is the arbiter when they disagree.",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]*$"
+      },
+      "additionalProperties": {
+        "$ref": "#/definitions/BindingDeclaration"
+      }
+    }
+  },
+  "definitions": {
+    "BindingDeclaration": {
+      "type": "object",
+      "required": ["rune"],
+      "additionalProperties": false,
+      "description": "A single binding declaration. The rune field is the only required property — all others are constraints that validators enforce across layers.",
+      "properties": {
+        "rune": {
+          "type": "string",
+          "enum": ["@", "~", "!", "?"],
+          "description": "The rune type: @ read (state→display, no side effects), ~ sync (state↔input, bidirectional), ! act (user→behavior, explicit trigger), ? intent (annotation only, no runtime effect)"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["string", "number", "boolean", "array", "object"],
+          "description": "Value type — validated across all host implementations at build time. Required for @ and ~ bindings."
+        },
+        "intent": {
+          "type": "string",
+          "description": "The ? annotation co-located with the binding — rationale, constraint, governance decision. Travels with the binding across all layers and implementations."
+        },
+        "args": {
+          "type": "array",
+          "description": "Parameter declarations for ! act bindings. Validators check that call sites pass compatible arguments.",
+          "items": {
+            "$ref": "#/definitions/ArgDeclaration"
+          }
+        },
+        "min": {
+          "type": "number",
+          "description": "Minimum value constraint for numeric ~ sync bindings — RNE005 if violated at build time"
+        },
+        "max": {
+          "type": "number",
+          "description": "Maximum value constraint for numeric ~ sync bindings — RNE005 if violated at build time"
+        },
+        "enum": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Allowed values for string ~ sync bindings — RNE005 if an unlisted value is assigned"
+        },
+        "maxLength": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum character length for string bindings — matches PIC X(n) in RECALL, VARCHAR(n) in SQL"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "rune": { "const": "?" } },
+            "required": ["rune"]
+          },
+          "then": {
+            "required": ["intent"]
+          }
+        }
+      ]
+    },
+    "ArgDeclaration": {
+      "type": "object",
+      "required": ["name"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Parameter name in kebab-case"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["string", "number", "boolean", "state-ref"],
+          "description": "Parameter type — 'state-ref' means the argument value is a binding id (the action receives the current state value)"
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this parameter must be supplied at call sites"
+        }
+      }
+    }
+  }
+}

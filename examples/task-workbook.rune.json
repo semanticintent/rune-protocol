@@ -1,0 +1,55 @@
+{
+  "$schema": "https://rune.semanticintent.dev/rune.schema.json",
+  "$rune": "1.1",
+  "host": {
+    "format": "mere",
+    "version": "1.0.0",
+    "source": "task-workbook.mp.html"
+  },
+  "bindings": {
+    "tasks": {
+      "rune": "@",
+      "type": "array",
+      "intent": "computed from all non-deleted task entries — do not mutate directly"
+    },
+    "new-task": {
+      "rune": "~",
+      "type": "string",
+      "maxLength": 200,
+      "intent": "cleared after !add-task fires"
+    },
+    "task-filter": {
+      "rune": "~",
+      "type": "string",
+      "enum": ["all", "active", "completed"],
+      "intent": "controls which task subset @tasks returns"
+    },
+    "task-count": {
+      "rune": "@",
+      "type": "number",
+      "intent": "live count of active (non-completed) tasks — display only"
+    },
+    "add-task": {
+      "rune": "!",
+      "args": [
+        { "name": "title", "type": "state-ref", "required": true }
+      ],
+      "intent": "appends to task list, clears ~new-task — no-op if ~new-task is empty"
+    },
+    "complete-task": {
+      "rune": "!",
+      "args": [
+        { "name": "task-id", "type": "string", "required": true }
+      ],
+      "intent": "marks task completed — irreversible in this workbook version"
+    },
+    "clear-completed": {
+      "rune": "!",
+      "intent": "removes all completed tasks from the list — destructive, no undo"
+    },
+    "workbook-purpose": {
+      "rune": "?",
+      "intent": "personal task tracking workbook — single user, no collaboration, no persistence beyond session"
+    }
+  }
+}

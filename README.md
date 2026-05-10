@@ -91,6 +91,35 @@ See [HOSTS.md](HOSTS.md) for the host implementation guide.
 
 ---
 
+## Schema
+
+**`rune.schema.json`** is the canonical binding manifest — the artifact that makes cross-layer contracts enforceable.
+
+```json
+{
+  "$schema": "https://rune.semanticintent.dev/rune.schema.json",
+  "$rune": "1.1",
+  "host": { "format": "react", "source": "app.tsx" },
+  "bindings": {
+    "risk-threshold": {
+      "rune": "~",
+      "type": "number",
+      "min": 0.05,
+      "max": 0.30,
+      "intent": "approved by risk committee Q1-2025 — review at quarter end"
+    },
+    "market-price":  { "rune": "@", "type": "number", "intent": "live NBBO feed — not manually entered" },
+    "submit-order":  { "rune": "!", "args": [{ "name": "order-id", "type": "string", "required": true }], "intent": "explicit, logged to OMS, irrevocable" }
+  }
+}
+```
+
+Keys are canonical kebab-case identifiers. Hosts translate to their own conventions — SQL: `risk_threshold`, C#: `RiskThreshold`, React: `'risk-threshold'`. The schema is the arbiter.
+
+See [examples/task-workbook.rune.json](examples/task-workbook.rune.json) for a complete manifest and [CONTRACTS.md](CONTRACTS.md) for the full cross-layer enforcement model.
+
+---
+
 ## Specification
 
 - [SPEC.md](SPEC.md) — Formal definition of the four runes
@@ -99,7 +128,7 @@ See [HOSTS.md](HOSTS.md) for the host implementation guide.
 - [ADOPTION.md](ADOPTION.md) — What spreading looks like
 - [AI.md](AI.md) — AI inference vs declaration: what AI reads in a Rune-annotated system
 - [CONTRACTS.md](CONTRACTS.md) — Cross-layer contract enforcement: the Rune schema as ground truth
-- [ROADMAP.md](ROADMAP.md) — What's next: schema, tooling, packages, site, ecosystem
+- [ROADMAP.md](ROADMAP.md) — What's next: tooling, packages, site, ecosystem
 
 ## Examples
 
