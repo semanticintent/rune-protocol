@@ -28,15 +28,16 @@ Without the schema, Rune is a convention. With it, Rune is a contract.
 
 ---
 
-## v1.2 — Tooling
+## v1.2 — Tooling (in progress)
 
 **Making Rune ambient.**
 
-- **CLI validator** — `rune validate --schema rune.schema.json`
-  Checks a codebase for RNE002 (unknown binding), RNE003 (sync to computed),
-  type mismatches, misspellings with suggestions
+- **CLI validator** ✓ — `@semanticintent/rune-cli` in `cli/`
+  `rune validate <manifest>` — validates `.rune.json` against `rune.schema.json`.
+  Reports RNE003 (wrong rune type), RNE005 (constraint violation), RNE006 (missing intent/type),
+  RNE007 (structural schema violation). Text + JSON output. Exit code 1 on errors.
 - **Extract tool** — `rune extract`
-  Reads an existing Rune-annotated codebase and generates `rune.schema.json`
+  Reads an existing Rune-annotated codebase and generates a `.rune.json` manifest
   from it. Zero-friction onboarding for existing codebases.
 - **LSP** — Language server protocol support
   Autocomplete binding names, inline `?` intent display, live schema
