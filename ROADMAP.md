@@ -107,6 +107,11 @@ The contract is language-agnostic by design.
   that archaeological methodology requires. Rune as the shared annotation
   substrate across the full Semantic Intent ecosystem.
 
+Each integration demonstrates one surface where the schema is the right
+artifact. The goal across v2.x is for `rune.schema.json` to become the
+natural first read for anyone trying to understand a system — not its
+documentation, not its code, but its declared binding contract.
+
 ---
 
 ## Adoption Shape
@@ -122,3 +127,55 @@ The spec stays stable. The ecosystem grows around it.
 | v1.3 | Adoption is one install command |
 | v2.0 | Rune is discoverable and citable |
 | v2.x | The Semantic Intent ecosystem shares one governance layer |
+| host | The pattern becomes visible — the argument becomes concrete |
+
+---
+
+## The Indispensable Host
+
+The spec is solid. The schema is real. The tooling works. What the adoption
+argument still needs is a host where `rune.schema.json` is the *obviously
+right place to look* to understand how a system behaves — not a demonstration,
+not an example, but a production codebase where the manifest is load-bearing.
+
+**What makes a host indispensable:**
+
+A host becomes indispensable when removing the schema would leave something
+genuinely missing — not just undocumented, but ungoverned. The contract
+between layers would be invisible again. The `?` intent annotations would
+exist only in people's heads. A new developer, or an AI generating code for
+that system, would have to read three codebases and hope they agree instead
+of reading one manifest.
+
+The host that makes this visible is likely one where:
+
+- **Multiple layers are genuinely in tension** — a SQL schema, a backend service,
+  and a frontend that all touch the same named values. The contract between them
+  is currently implicit.
+- **AI is already generating code for it** — and the drift between what the AI
+  produces and what the other layers expect is a real, recurring cost.
+- **The intent annotations carry real governance weight** — a `risk-threshold`
+  that actually has a committee approval attached, a `submit-order` that is
+  actually irrevocable.
+
+**The AI drift angle:**
+
+As AI writes more code across more layers simultaneously, cross-layer drift
+becomes *more* likely, not less. An AI generating a React component doesn't
+automatically know what the SQL schema guarantees about a value it's binding
+to. A `rune.schema.json` in the repository is exactly the artifact you hand
+that AI — one read, every layer's contract declared, no inference required.
+
+The schema was designed for human cross-layer enforcement. It turns out to be
+equally well-suited for AI-assisted authorship, because it gives the AI the
+same thing it gives a human new to the codebase: a single declaration of what
+every value is, what rune governs it, what constraints apply, and why.
+
+**The EMBER convergence:**
+
+The next-level version of this is when Rune and EMBER are present in the
+same artifact. EMBER describes what a construct *means*. Rune describes how
+a value *behaves*. When both are declared — an AI reading the artifact knows
+intent AND binding semantics in one pass. That is a different authoring
+surface than anything that currently exists, and it derives naturally from
+the ecosystem that is already being built.
