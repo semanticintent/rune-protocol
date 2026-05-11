@@ -33,7 +33,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Spec', link: '/SPEC' },
-      { text: 'Origins', link: '/ORIGINS' },
+      { text: 'Tooling', link: '/tooling/schema' },
       { text: 'Examples', link: '/examples/mere' },
       { text: 'Implementations', link: '/implementations/csharp' },
       { text: 'GitHub', link: 'https://github.com/semanticintent/rune-protocol' },
@@ -57,6 +57,14 @@ export default defineConfig({
           { text: 'AI & Declaration', link: '/AI' },
           { text: 'Cross-Layer Contracts', link: '/CONTRACTS' },
           { text: 'Industry Applications', link: '/INDUSTRY' },
+        ]
+      },
+      {
+        text: 'Tooling',
+        items: [
+          { text: 'Schema Reference', link: '/tooling/schema' },
+          { text: 'CLI — validate & extract', link: '/tooling/cli' },
+          { text: 'LSP — Editor Integration', link: '/tooling/lsp' },
         ]
       },
       {

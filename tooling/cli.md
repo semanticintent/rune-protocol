@@ -1,0 +1,196 @@
+# CLI Reference
+
+`@semanticintent/rune-cli` provides two commands for working with Rune binding manifests.
+
+```sh
+npm install -g @semanticintent/rune-cli
+```
+
+---
+
+## Workflow
+
+The typical workflow is a round-trip: extract a manifest from existing source, then validate to see what's missing, then enrich until the manifest is a complete contract.
+
+```sh
+rune extract src/           # scan source → generate rune.json
+rune validate rune.json     # find missing types and intent annotations
+# enrich rune.json with type, intent, min/max/enum
+rune validate rune.json     # clean — manifest is now a cross-layer contract
+```
+
+---
+
+## rune validate
+
+Validates a `.rune.json` binding manifest against the [Rune schema](/tooling/schema).
+
+```sh
+rune validate <manifest>
+rune validate my-app.rune.json
+rune validate my-app.rune.json --format json
+```
+
+**Options:**
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--format text\|json` | `text` | Output format. `json` is CI/editor friendly |
+
+**Exit codes:** `0` = valid (warnings may exist), `1` = one or more errors.
+
+**Text output:**
+
+```
+✓ my-app.rune.json — valid
+  3 warnings
+  [RNE006] tasks  binding 'tasks' has no intent annotation
+           Bindings without ? intent travel without rationale. Consider adding one.
+```
+
+**JSON output:**
+
+```json
+{
+  "manifest": "my-app.rune.json",
+  "valid": true,
+  "errorCount": 0,
+  "warningCount": 3,
+  "diagnostics": [
+    {
+      "code": "RNE006",
+      "severity": "warning",
+      "binding": "tasks",
+      "message": "binding 'tasks' has no intent annotation",
+      "hint": "Bindings without ? intent travel without rationale."
+    }
+  ]
+}
+```
+
+**CI integration:**
+
+```yaml
+# GitHub Actions
+- name: Validate Rune manifest
+  run: rune validate rune.json --format json
+```
+
+---
+
+## rune extract
+
+Scans source files for Rune binding patterns and generates a `.rune.json` manifest. Zero-friction onboarding for existing Rune-annotated codebases.
+
+```sh
+rune extract <source>
+rune extract src/app.tsx                     # single file
+rune extract src/                            # scan directory recursively
+rune extract src/ --host html                # force host format
+rune extract src/ --out my-app.rune.json     # custom output path
+```
+
+**Options:**
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `--host auto\|html\|ts\|csharp\|sql` | `auto` | Host format. `auto` detects from file extension |
+| `--out <file>` | `rune.json` | Output manifest path |
+
+**Output:**
+
+```
+✓ extracted 7 bindings from 3 files
+  @ read: 2  ~ sync: 2  ! act: 2  ? intent: 1
+  → rune.json
+  Run 'rune validate rune.json' to find missing types and intent annotations.
+```
+
+### Supported host formats
+
+| Format | Extensions | Patterns detected |
+|--------|------------|-------------------|
+| `html` | `.html`, `.mp` | `@id`, `~id`, `!id` as attribute names; `?"annotation"` |
+| `ts` | `.ts`, `.tsx`, `.js`, `.jsx` | `useRead()`, `useSync()`, `useAct()`, `useIntent()` |
+| `csharp` | `.cs` | `[RuneState]`, `[RuneComputed]`, `[RuneAction]`, `[RuneIntent("...")]` |
+| `sql` | `.sql` | `COMMENT ON ... IS 'rune:@ ...'` annotation convention |
+
+### Host format details
+
+::: code-group
+
+```html [HTML / Mere]
+<!-- Detected as attribute names and sigil-prefixed values -->
+<field ~new-task placeholder="New task…"/>
+<button !add-task>Add</button>
+<list @tasks><item @item.title /></list>
+<screen ?"mobile task list, focus on speed">
+```
+
+```ts [TypeScript / React]
+// Detected from hook calls in the reference implementation
+const tasks     = useRead('tasks')            // → @ tasks
+const [v, set]  = useSync('new-task')         // → ~ new-task
+const act       = useAct('add-task')          // → ! add-task
+useIntent('screen', 'mobile task list')       // → ? screen, with annotation
+
+// host.* patterns also detected
+host.read('tasks')
+host.sync('new-task', value)
+host.act('add-task', handler)
+host.recordIntent('screen', 'annotation')
+```
+
+```csharp [C#]
+// Attributes map to rune types, PascalCase → kebab-case
+[RuneState]
+public string NewTask { get; set; }           // → ~ new-task
+
+[RuneComputed]
+public IEnumerable<Task> Tasks { get; }       // → @ tasks
+
+[RuneAction]
+public void AddTask(string title) { }         // → ! add-task
+
+// Stacked attributes are handled — intent travels with the binding
+[RuneState]
+[RuneIntent("approved by risk committee")]
+public decimal RiskThreshold { get; set; }    // → ~ risk-threshold + intent
+```
+
+```sql [SQL]
+-- Use COMMENT ON with 'rune:sigil intent' annotation
+COMMENT ON COLUMN tasks.task_title IS 'rune:~ user-entered — cleared after add_task';
+COMMENT ON COLUMN tasks.task_id    IS 'rune:@ system-assigned — do not mutate';
+COMMENT ON FUNCTION add_task       IS 'rune:! no-op if title is empty';
+COMMENT ON TABLE tasks             IS 'rune:? personal task tracking';
+```
+
+:::
+
+### Extract output
+
+The manifest generated by `rune extract` is a valid starting point — types and intent annotations are absent until you add them. `rune validate` tells you exactly what's missing:
+
+```sh
+rune extract src/ && rune validate rune.json
+# → valid, 10 warnings (missing types and intent annotations)
+```
+
+Enrich the manifest, re-validate, and the warnings disappear. The manifest is now a full cross-layer contract.
+
+---
+
+## Diagnostic codes
+
+| Code | Severity | Description |
+|------|----------|-------------|
+| `RNE001` | error | Invalid rune type — must be `@` `~` `!` `?` |
+| `RNE002` | error | Unknown binding — used but not declared in manifest |
+| `RNE003` | error | Wrong rune type for binding kind (e.g. `args` on `@`) |
+| `RNE004` | error | Missing required field (e.g. `intent` on `?` binding) |
+| `RNE005` | error | Constraint violation — `min`/`max` on non-number, `enum` on non-string, `min > max` |
+| `RNE006` | warning | Missing intent annotation or type declaration |
+| `RNE007` | error | Manifest does not conform to `rune.schema.json` structurally |
+
+RNE002 and RNE003 are also raised by the [LSP](/tooling/lsp) in real time as you type.

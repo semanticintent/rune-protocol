@@ -97,6 +97,26 @@ CREATE FUNCTION act_submit_order(p_order_id UUID) RETURNS TEXT ...
 
 :::
 
+## Tooling
+
+The contract is only useful if it's enforced. Three tools close the loop:
+
+```sh
+npm install -g @semanticintent/rune-cli   # validate + extract
+npm install -g @semanticintent/rune-lsp   # editor integration
+```
+
+```sh
+rune extract src/        # scan source → bootstrap rune.json
+rune validate rune.json  # find missing types and intent annotations
+```
+
+The LSP picks up `rune.json` automatically — completion, hover, and inline diagnostics in any LSP-capable editor (VS Code, Neovim, and others).
+
+→ [Schema reference](/tooling/schema) · [CLI reference](/tooling/cli) · [LSP setup](/tooling/lsp)
+
+---
+
 ## Part of the Semantic Intent Ecosystem
 
 Rune is the syntax layer beneath the semantic layer. Every project in the ecosystem has its own domain vocabulary — [EMBER](https://github.com/semanticintent/ember), [Mere](https://docs.mere.fyi), [Recall](https://semanticintent.dev), [Phoenix](https://github.com/semanticintent/phoenix-runtime), [Strata](https://github.com/semanticintent/strata-runtime), [Wake](https://wake.semanticintent.dev). Each answers *what does this mean*. Rune answers *how does this value behave*. Those are different questions at different levels — and Rune answers the second one, once, for all of them.
