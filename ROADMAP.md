@@ -28,7 +28,7 @@ Without the schema, Rune is a convention. With it, Rune is a contract.
 
 ---
 
-## v1.2 — Tooling (in progress)
+## v1.2 — Tooling ✓ (May 2026)
 
 **Making Rune ambient.**
 
@@ -40,9 +40,11 @@ Without the schema, Rune is a convention. With it, Rune is a contract.
   Scans source files for Rune binding patterns and generates a `.rune.json` manifest.
   Supports HTML/Mere, TypeScript/React, C#, and SQL (COMMENT ON annotation convention).
   Auto-detects host format from file extension. Round-trip: extract → validate → enrich.
-- **LSP** — Language server protocol support
-  Autocomplete binding names, inline `?` intent display, live schema
-  validation in any editor
+- **LSP** ✓ — `@semanticintent/rune-lsp` in `lsp/`
+  Completion (binding names, context-aware per rune type), hover (rune type +
+  type + constraints + intent annotation), diagnostics (RNE002 unknown binding,
+  RNE003 wrong rune type). Supports VS Code, Neovim, any LSP-capable editor.
+  Manifest auto-discovered (`rune.json` or `*.rune.json`) and hot-reloaded.
 
 ---
 
