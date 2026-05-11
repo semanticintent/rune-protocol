@@ -36,9 +36,10 @@ Without the schema, Rune is a convention. With it, Rune is a contract.
   `rune validate <manifest>` — validates `.rune.json` against `rune.schema.json`.
   Reports RNE003 (wrong rune type), RNE005 (constraint violation), RNE006 (missing intent/type),
   RNE007 (structural schema violation). Text + JSON output. Exit code 1 on errors.
-- **Extract tool** — `rune extract`
-  Reads an existing Rune-annotated codebase and generates a `.rune.json` manifest
-  from it. Zero-friction onboarding for existing codebases.
+- **Extract tool** ✓ — `rune extract <source>`
+  Scans source files for Rune binding patterns and generates a `.rune.json` manifest.
+  Supports HTML/Mere, TypeScript/React, C#, and SQL (COMMENT ON annotation convention).
+  Auto-detects host format from file extension. Round-trip: extract → validate → enrich.
 - **LSP** — Language server protocol support
   Autocomplete binding names, inline `?` intent display, live schema
   validation in any editor
