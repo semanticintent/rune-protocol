@@ -1,7 +1,14 @@
 {
   "name": "@semanticintent/rune-cli",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "CLI tooling for Rune Protocol \u2014 validate binding manifests",
+  "license": "MIT",
+  "homepage": "https://rune.semanticintent.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semanticintent/rune-protocol.git",
+    "directory": "cli"
+  },
   "bin": {
     "rune": "./dist/index.js"
   },

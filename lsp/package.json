@@ -1,7 +1,14 @@
 {
   "name": "@semanticintent/rune-lsp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Language Server Protocol implementation for Rune Protocol \u2014 completion, hover, diagnostics",
+  "license": "MIT",
+  "homepage": "https://rune.semanticintent.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semanticintent/rune-protocol.git",
+    "directory": "lsp"
+  },
   "main": "./dist/server.js",
   "bin": {
     "rune-lsp": "./dist/server.js"

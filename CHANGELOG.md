@@ -1,5 +1,10 @@
 # Changelog
 
+## rune-cli 1.2.2 · rune-lsp 1.2.1 — 2026-11-15
+
+- Declare the MIT licence, the repository and the homepage in both packages, and ship the LICENSE file
+  (npm showed "License: none").
+
 ## rune-cli 1.2.1 — 2026-11-15
 
 - `rune extract` on a path that doesn't exist prints one line and exits 1, instead of a stack trace.
