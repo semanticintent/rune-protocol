@@ -1,5 +1,24 @@
 # Changelog
 
+## rune-cli 1.2.1 — 2026-11-15
+
+- `rune extract` on a path that doesn't exist prints one line and exits 1, instead of a stack trace.
+- `rune --version` reads the package version instead of a hard-coded one.
+- Declares `engines: node >=20.19`: the CLI loads an ESM-only dependency (chalk 5) from CommonJS,
+  which needs Node 20.19+ or 22.12+.
+- Real tests (`npm test` builds, then runs end-to-end checks against the repository's examples).
+
+## v1.2.0 — 2026-11-15
+
+DOI: `10.5281/zenodo.24247119` (version) · concept `10.5281/zenodo.20007882`
+
+- 1.1: `rune.schema.json`, the canonical binding manifest.
+- 1.2: `rune validate` (`@semanticintent/rune-cli`), `rune extract` (four-host scanner), `rune-lsp`
+  (completion, hover, diagnostics).
+- UNIVERSAL.md; PHILOSOPHY.md opens with "Contracts in the Form of Signals"; tooling section on the docs site.
+
+---
+
 ## v1.0.2 — 2026-05-03
 
 DOI minted: `10.5281/zenodo.20007883`  

@@ -9,8 +9,13 @@ interface ExtractOptions {
   out: string
 }
 
-function collectFiles(sourcePath: string, host: HostFormat): string[] {
-  const stat = statSync(sourcePath)
+function collectFiles(sourcePath: string, host: HostFormat): string[] | null {
+  let stat
+  try {
+    stat = statSync(sourcePath)
+  } catch {
+    return null
+  }
   if (stat.isFile()) return [sourcePath]
 
   const files: string[] = []
@@ -72,6 +77,10 @@ export async function extractCommand(source: string, options: ExtractOptions): P
   const absOut = resolve(options.out)
 
   const files = collectFiles(absSource, options.host)
+  if (files === null) {
+    console.error(chalk.red(`rune: no such file or directory: '${source}'`))
+    process.exit(1)
+  }
   if (files.length === 0) {
     console.error(chalk.red(`rune: no supported files found in '${source}'`))
     console.error(chalk.dim('Supported: .html, .ts, .tsx, .js, .jsx, .cs, .sql'))

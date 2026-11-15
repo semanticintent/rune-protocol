@@ -1,9 +1,12 @@
 {
   "name": "@semanticintent/rune-cli",
-  "version": "1.2.0",
-  "description": "CLI tooling for Rune Protocol — validate binding manifests",
+  "version": "1.2.1",
+  "description": "CLI tooling for Rune Protocol \u2014 validate binding manifests",
   "bin": {
     "rune": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   },
   "publishConfig": {
     "access": "public"
@@ -11,7 +14,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",
-    "test": "node --test dist/test"
+    "test": "npm run build && node --test test/*.test.mjs"
   },
   "files": [
     "dist",

@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { readFileSync } from 'fs'
+import { join } from 'path'
 import { Command } from 'commander'
 import { validateCommand } from './commands/validate'
 import { extractCommand } from './commands/extract'
@@ -6,7 +8,7 @@ import { extractCommand } from './commands/extract'
 const program = new Command()
   .name('rune')
   .description('Rune Protocol tooling — validate binding manifests, extract bindings from source')
-  .version('1.2.0')
+  .version(JSON.parse(readFileSync(join(__dirname, '..', 'package.json'), 'utf-8')).version)
 
 program
   .command('validate <manifest>')

@@ -6,6 +6,9 @@ CLI tooling for [Rune Protocol](https://rune.semanticintent.dev) — validate bi
 npm install -g @semanticintent/rune-cli
 ```
 
+Requires Node.js 20.19 or later (or 22.12 or later).
+
+
 **Typical workflow:**
 
 ```sh
